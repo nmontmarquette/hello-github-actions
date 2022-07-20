@@ -23,3 +23,9 @@ Reading package lists... Done
 W: There is no public key available for the following key IDs:
 AA8E81B4331F7F50
 ```
+
+## Links
+
+* [Pipenv main Web page](https://pipenv.pypa.io/en/latest/)
+* [Pipenv main repository](https://github.com/pypa/pipenv)
+* [Currently the most popular Pipenv action](https://github.com/marketplace/actions/pipenv-for-github-actions)
