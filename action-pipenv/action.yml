@@ -1,0 +1,32 @@
+# Syntax:
+# https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions
+name: "Pipenv"
+description: "Setup a Python virtual environment using the 'pipenv' tool."
+author: "python@montmarquette.org"
+
+inputs:
+  PYTHON_VERSION:
+    description: "The specific Python version to use, else latest will be used"
+    required: false
+    default: "3.8"
+
+runs:
+  # https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#example-using-public-docker-registry-container
+  using: "docker"
+  # image:
+  # Can be 'Dockerfile' to use action-local Docker description file
+  # or a link to an existing image e.g.: https://hub.docker.com/_/python/
+  #image: "Dockerfile"
+  image: "docker://python:$INPUT_PYTHON_VERSION"
+  #steps:
+  #  - run: docker build ${{ github.action_path }}/Dockerfile --build-arg PYTHON_IMAGE_VERSION=3.8
+  #    shell: bash
+  pre-entrypoint: 'setup.sh'
+  entrypoint: 'entrypoint.sh'
+
+# Branding:
+# https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#branding
+# https://feathericons.com/
+branding:
+  icon: "layers"
+  color: "blue"

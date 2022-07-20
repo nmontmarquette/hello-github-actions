@@ -11,3 +11,11 @@ jobs:
         with:
           MY_NAME: "Nicolas"
 
+    name: Test my Pipenv Action
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: ./action-pipenv
+        with:
+          PYTHON_VERSION: "3.6"
+
