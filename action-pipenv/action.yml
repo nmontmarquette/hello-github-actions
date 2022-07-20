@@ -22,7 +22,7 @@ runs:
   using: "composite"
   steps:
     - run: |
-        docker build --file Dockerfile --build-arg PYTHON_VERSION=${{ inputs.python-version }} ./action-pipenv
+        docker build --file Dockerfile --build-arg PYTHON_VERSION=${{ inputs.python-version }} .
       shell: sh
 
 # Branding:
