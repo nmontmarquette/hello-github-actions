@@ -1,3 +1,5 @@
 #!/bin/sh -l
 
+sh -c "INPUT_PYTHON_VERSION='${INPUT_PYTHON_VERSION}'"
+sh -c "PYTHON_VERSION='${PYTHON_VERSION}'"
 sh -c "pipenv --python $INPUT_PYTHON_VERSION"
