@@ -17,7 +17,7 @@ runs:
   # Can be 'Dockerfile' to use action-local Docker description file
   # or a link to an existing image e.g.: https://hub.docker.com/_/python/
   #image: "Dockerfile"
-  image: "docker://python:${{ github.inputs.python-version }}"
+  image: "docker://python:${{ inputs.python-version }}"
   #steps:
   #  - run: docker build ${{ github.action_path }}/Dockerfile --build-arg PYTHON_IMAGE_VERSION=3.8
   #    shell: bash
