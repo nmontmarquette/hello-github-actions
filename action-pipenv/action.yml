@@ -5,7 +5,7 @@ description: "Setup a Python virtual environment using the 'pipenv' tool."
 author: "python@montmarquette.org"
 
 inputs:
-  python-version:
+  pipenv-python-version:
     description: "The specific Python version to use, else latest will be used"
     required: false
     default: "3.8"
@@ -19,6 +19,11 @@ runs:
   #image: "Dockerfile"
   #image: "docker://python:${{ inputs.python-version }}"
   #entrypoint: 'entrypoint.sh'
+
+  #
+  # The 'using: "docker"' didn't allowed an out-of-the-box way to provide parameters to the Dockerfile.
+  # Using a 'composite' setup, we're able to build a complete 'docker build' command and thus
+  # specify value such as Python version.
   using: "composite"
   steps:
     - run: pwd
@@ -26,7 +31,7 @@ runs:
     - run: ls -Ralsh
       shell: sh
     - run: |
-        docker build --file ./action-pipenv/Dockerfile --build-arg PYTHON_VERSION=${{ inputs.python-version }} ./action-pipenv
+        docker build --file ./action-pipenv/Dockerfile --build-arg DOCKER_PYTHON_VERSION=${{ inputs.pipenv-python-version }} ./action-pipenv
       shell: sh
 
 # Branding:
