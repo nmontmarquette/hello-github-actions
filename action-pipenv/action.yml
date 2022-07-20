@@ -12,17 +12,18 @@ inputs:
 
 runs:
   # https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#example-using-public-docker-registry-container
-  using: "docker"
+  #using: "docker"
   # image:
   # Can be 'Dockerfile' to use action-local Docker description file
   # or a link to an existing image e.g.: https://hub.docker.com/_/python/
   #image: "Dockerfile"
-  image: "docker://python:${{ inputs.python-version }}"
-  #steps:
-  #  - run: docker build ${{ github.action_path }}/Dockerfile --build-arg PYTHON_IMAGE_VERSION=3.8
-  #    shell: bash
-  #pre-entrypoint: 'setup.sh'
-  entrypoint: 'entrypoint.sh'
+  #image: "docker://python:${{ inputs.python-version }}"
+  #entrypoint: 'entrypoint.sh'
+  using: "composite"
+  steps:
+    - run: |
+        docker build --file Dockerfile --build-arg PYTHON_VERSION=${{ inputs.python-version }} ./action-pipenv
+      shell: sh
 
 # Branding:
 # https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#branding
