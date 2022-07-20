@@ -21,8 +21,9 @@ runs:
   #entrypoint: 'entrypoint.sh'
   using: "composite"
   steps:
-    - run: |
-        ls -Ralsh
+    - run: pwd
+      shell: sh
+    - run: ls -Ralsh
       shell: sh
     - run: |
         docker build --file Dockerfile --build-arg PYTHON_VERSION=${{ inputs.python-version }} .
