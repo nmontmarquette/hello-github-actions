@@ -1,5 +1,4 @@
-#!/bin/sh -l
+#!/bin/sh --login
 
-sh -c "INPUT_PYTHON_VERSION='${INPUT_PYTHON_VERSION}'"
-sh -c "PYTHON_VERSION='${PYTHON_VERSION}'"
-sh -c "pipenv --python $INPUT_PYTHON_VERSION"
+# $* forwards all parameter supplied to the 'entreypoint.sh' script
+sh -c "$*"

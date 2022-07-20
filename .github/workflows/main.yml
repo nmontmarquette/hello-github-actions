@@ -23,4 +23,16 @@ jobs:
         with:
           pipenv-python-version: ${{ matrix.python-version }}
 
+  test-pipfile:
+    name: Test setup usage with pipfile
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: ./action-pipenv
+        with:
+          # The '3.7' in the following two lines should match what's
+          # defined in the Pipfile
+          pipenv-python-version: 3.7  # should match what's defined in the Pipfile
+          pipenv-command: "pipenv install --dev" # also install development dependencies
+
 
