@@ -27,8 +27,8 @@ runs:
   image: "docker://python:3.8"
   args:
     - ${{ inputs.pipenv-command }}
-  pre-entrypoint: "setup.sh"
-  entrypoint: "entrypoint.sh"
+  pre-entrypoint: "./action-pipenv/setup.sh"
+  entrypoint: "./action-pipenv/entrypoint.sh"
 
 # Branding:
 # https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#branding
