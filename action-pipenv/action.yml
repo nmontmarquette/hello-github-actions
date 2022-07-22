@@ -1,0 +1,40 @@
+# Syntax:
+# https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions
+name: "Pipenv"
+description: "Setup a Python virtual environment using the 'pipenv' tool."
+author: "python@montmarquette.org"
+
+inputs:
+  pipenv-command:
+    description: "The full pipenv command to be executed"
+    required: true
+  pipenv-python-version:
+    description: "The specific Python version to use, else latest will be used"
+    required: false
+    default: "3.8"
+
+runs:
+  #
+  # Using a 'docker' setup didn't allowed an out-of-the-box way to provide
+  # parameters to the Dockerfile.
+  # Using a 'composite' setup, we're able to build a complete 'docker build'
+  # command and thus specify value such as the desired Python version.
+  # The downside of using 'composite' is that, out of the box, we don't
+  # get all of the freebees the 'docker' setup provide such as
+  # GH credentials, GH context etc.
+  using: "docker"
+  # Q: How does one make use of the 'inputs' parameter in the 'image' field below???
+  #image: "docker://python:{{ inputs.pipenv-python-version }}"
+  image: "$(echo '3.8')"
+  #{{ inputs.pipenv-python-version }}
+  args:
+    - ${{ inputs.pipenv-command }}
+  pre-entrypoint: "./action-pipenv/setup.sh"
+  entrypoint: "./action-pipenv/entrypoint.sh"
+
+# Branding:
+# https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#branding
+# https://feathericons.com/
+branding:
+  icon: "layers"
+  color: "blue"
