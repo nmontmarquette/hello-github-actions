@@ -24,7 +24,8 @@ runs:
   # GH credentials, GH context etc.
   using: "docker"
   # Q: How does one make use of the 'inputs' parameter in the 'image' field below???
-  image: "docker://python:$(env)"
+  #image: "docker://python:{{ inputs.pipenv-python-version }}"
+  image: "$(echo '3.8')"
   #{{ inputs.pipenv-python-version }}
   args:
     - ${{ inputs.pipenv-command }}
