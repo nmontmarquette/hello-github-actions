@@ -23,7 +23,8 @@ runs:
   # get all of the freebees the 'docker' setup provide such as
   # GH credentials, GH context etc.
   using: "docker"
-  image: "docker://debian:${{ github.inputs.pipenv-python-version }}"
+  #image: "docker://python:${{ inputs.pipenv-python-version }}"
+  image: "docker://python:3.8"
   args:
     - ${{ inputs.pipenv-command }}
   pre-entrypoint: "setup.sh"
