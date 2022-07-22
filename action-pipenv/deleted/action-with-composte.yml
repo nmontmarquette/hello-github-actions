@@ -1,0 +1,57 @@
+# Syntax:
+# https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions
+name: "Pipenv"
+description: "Setup a Python virtual environment using the 'pipenv' tool."
+author: "python@montmarquette.org"
+
+inputs:
+  pipenv-command:
+    description: "The full pipenv command to be executed"
+    required: true
+  pipenv-python-version:
+    description: "The specific Python version to use, else latest will be used"
+    required: false
+    default: "3.8"
+
+runs:
+  #
+  # Using a 'docker' setup didn't allowed an out-of-the-box way to provide
+  # parameters to the Dockerfile.
+  # Using a 'composite' setup, we're able to build a complete 'docker build'
+  # command and thus specify value such as the desired Python version.
+  # The downside of using 'composite' is that, out of the box, we don't
+  # get all of the freebees the 'docker' setup provide such as
+  # GH credentials, GH context etc.
+  using: "composite"
+  steps:
+    - name: Build Docker Image
+      run: ::set-output name=docker-image-id::$(docker_build.sh ${{ inputs.pipenv-python-version }}
+      shell: sh
+      id: docker-image-builder
+    - run: docker_run.sh ${{ inputs.pipenv-command }} ${{ steps.docker-image-builder.outputs.docker-image-id }}
+      shell: sh
+
+# Branding:
+# https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#branding
+# https://feathericons.com/
+branding:
+  icon: "layers"
+  color: "blue"
+
+
+#1234567890123456789012345678901234567890123456789012345678901234
+#d3a84dccd7bca58efb50ec94c66b4290022822611e72bc3debc76a78f3a0c371 = 64 chars * 8 = 512bits
+
+ => [internal] load .dockerignore                                                                                         0.0s
+ => => transferring context: 2B                                                                                           0.0s
+ => [internal] load metadata for docker.io/library/python:3.9                                                             1.0s
+ => CACHED [1/4] FROM docker.io/library/python:3.9@sha256:2cea326d2eb1ea18f8846f722ae7fed6064f5c9912ebe615b47e3621c33e20  0.0s
+ => [internal] load build context                                                                                         0.0s
+ => => transferring context: 35B                                                                                          0.0s
+ => [2/4] RUN apt-get update     && apt-get install -y pipenv     && python --version ; pip --version ; pipenv --versio  36.1s
+ => [3/4] ADD entrypoint.sh /entrypoint.sh                                                                                0.0s
+ => [4/4] RUN chmod +x /entrypoint.sh                                                                                     0.4s
+ => exporting to image                                                                                                    1.3s
+ => => exporting layers                                                                                                   1.3s
+ => => writing image sha256:d3a84dccd7bca58efb50ec94c66b4290022822611e72bc3debc76a78f3a0c371                              0.0s
+ => => naming to docker.io/library/aaaa

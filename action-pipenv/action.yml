@@ -22,14 +22,12 @@ runs:
   # The downside of using 'composite' is that, out of the box, we don't
   # get all of the freebees the 'docker' setup provide such as
   # GH credentials, GH context etc.
-  using: "composite"
-  steps:
-    - run: |
-        docker build \
-        --file ./action-pipenv/Dockerfile \
-        --build-arg DOCKER_PYTHON_VERSION=${{ inputs.pipenv-python-version }} \
-        ./action-pipenv
-      shell: sh
+  using: "docker"
+  image: "docker://debian:${{ inputs.pipenv-python-version }}"
+  args:
+    - ${{ inputs.pipenv-command }}
+  pre-entrypoint: "setup.sh"
+  entrypoint: "entrypoint.sh"
 
 # Branding:
 # https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#branding

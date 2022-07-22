@@ -26,6 +26,7 @@ AA8E81B4331F7F50
 
 ## Links
 
+* [Dockerfile support for GitHub Actions](https://docs.github.com/en/actions/creating-actions/dockerfile-support-for-github-actions)
 * [Metadata syntax for GitHub Actions](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions)
 * [Workflow syntax for GitHub Actions](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
 * [Pipenv main Web page](https://pipenv.pypa.io/en/latest/)

@@ -6,4 +6,15 @@
 # The Docker images we're expecting to run against is Debian based.
 #
 # TBD: Is this script executed from within or outside of the container?
-apt-get update && apt-get install -v pipenv
+apt-get update
+
+apt-get install -y python3-pip
+
+python -m pip install --upgrade pip
+
+python -m pip install pipenv
+
+python --version
+pip --version
+pipenv --version
+
