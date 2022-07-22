@@ -32,3 +32,9 @@ AA8E81B4331F7F50
 * [Pipenv main Web page](https://pipenv.pypa.io/en/latest/)
 * [Pipenv main repository](https://github.com/pypa/pipenv)
 * [Currently the most popular Pipenv action](https://github.com/marketplace/actions/pipenv-for-github-actions)
+* [Running a container-based Action](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idcontainer)
+* [Github Actions](https://github.com/actions/runner/)
+
+
+
+src/Runner.Worker/ActionManager.cs

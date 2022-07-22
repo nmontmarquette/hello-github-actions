@@ -30,8 +30,6 @@ jobs:
       - uses: actions/checkout@v1
       - uses: ./action-pipenv
         with:
-          # The '3.7' in the following two lines should match what's
-          # defined in the Pipfile
           pipenv-python-version: 3.7  # should match what's defined in the Pipfile
           pipenv-command: "pipenv install --dev" # also install development dependencies
 
