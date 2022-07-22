@@ -23,8 +23,9 @@ runs:
   # get all of the freebees the 'docker' setup provide such as
   # GH credentials, GH context etc.
   using: "docker"
-  #image: "docker://python:${{ inputs.pipenv-python-version }}"
-  image: "docker://python:3.7"
+  # Q: How does one make use of the 'inputs' parameter in the 'image' field below???
+  image: "docker://python:$(env)"
+  #{{ inputs.pipenv-python-version }}
   args:
     - ${{ inputs.pipenv-command }}
   pre-entrypoint: "./action-pipenv/setup.sh"
