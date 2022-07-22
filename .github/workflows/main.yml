@@ -11,17 +11,17 @@ jobs:
         with:
           MY_NAME: "Nicolas"
 
-  test-pipenv-action:
-    name: Test my Pipenv Action
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.6", "3.8", "3.9", "3.10"]
-    steps:
-      - uses: actions/checkout@v1
-      - uses: ./action-pipenv
-        with:
-          pipenv-python-version: ${{ matrix.python-version }}
+  #test-pipenv-action:
+  #  name: Test my Pipenv Action
+  #  runs-on: ubuntu-latest
+  #  strategy:
+  #    matrix:
+  #      python-version: ["3.6", "3.8", "3.9", "3.10"]
+  #  steps:
+  #    - uses: actions/checkout@v1
+  #    - uses: ./action-pipenv
+  #      with:
+  #        pipenv-python-version: ${{ matrix.python-version }}
 
   test-pipfile:
     name: Test setup usage with pipfile
